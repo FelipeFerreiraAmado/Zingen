@@ -1,0 +1,54 @@
+.py-base {
+    padding-block: var(--py-base);
+}
+
+.py-lg {
+    padding-block: var(--py-lg);
+}
+
+.py-xl {
+    padding-block: var(--py-xl);
+}
+
+.px-lg {
+    padding-inline: var(--px-lg);
+}
+
+.container {
+    --max-width: 375px;
+    /* explicação do cálculo desse width:
+    função min() recebe 2 argumentos e aplica o menor deles
+    A VIRGULA SEPARA O VALOR A SER COMPARADO.
+    Então ele vai comparar, nesse caso o --max-width é de 375px,
+    vamos supor que a largura da tela tenha 400px, o calculo ficaria assim:
+    min(375px, 400px - 24px * 2) ou seja 24px * 2 = 48px
+    400px - 48px = 352px. 
+    min(375px, 352px) vai ser aplicado o valor de 352px!!*/
+    width: min(var(--max-width), 100% - var(--px-lg) * 2);
+    margin-inline: auto;
+    border: solid violet;
+}
+
+.desktop-only {
+    display: none;
+}
+
+.even-columns {
+    display: grid;
+    gap: 1rem;
+}
+
+@media (width >= 80em) {
+    .container {
+        --max-width: 80rem;
+    }
+
+    .desktop-only {
+        display: initial;
+    }
+
+    .even-columns {
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+    }
+}
